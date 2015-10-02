@@ -6,6 +6,8 @@
 
 import br.ifes.edu.model.Cafe;
 import br.ifes.edu.model.FabricaCafe;
+import br.ifes.edu.model.FabricaCafeCappuccino;
+import br.ifes.edu.model.FabricaCafeDescafeinado;
 import br.ifes.edu.model.FabricaCafeNormal;
 import br.ifes.edu.model.Ingrediente;
 
@@ -20,27 +22,39 @@ import org.junit.Test;
  */
 public class CafeTeste extends TestCase {
     
-    private FabricaCafeNormal fabricaCafeNormal;
+    //private FabricaCafeNormal fabricaCafeNormal;
     private FabricaCafe fabricaCafe;
     
 	
     @Before
     public void before()
     {
-        fabricaCafe = new FabricaCafe();
-        fabricaCafeNormal = new FabricaCafeNormal();
+        
+        //fabricaCafeNormal = new FabricaCafeNormal();
     }
 
     @Test
-    public void testFactoryCafe() throws Exception
+    public void testFactoryCafeNormal() throws Exception
     {
-        
+        fabricaCafe = new FabricaCafe();
         Cafe cafe = fabricaCafe.fazerCafe("normal");
-                //fabricaCafeNormal.criarCafe();
-        //Assert.assertNotNull(cafe);
-        //Assert.assertSame(Cafe.class, cafe.getClass());
-        //Assert.assertSame(Ingrediente.class, cafe.getClass());
-        
+        Assert.assertSame(cafe.getNome(), new FabricaCafeNormal().criarCafe().getNome());
+    }
+    
+    @Test
+    public void testFactoryCafeCappuccino() throws Exception
+    {
+        fabricaCafe = new FabricaCafe();
+        Cafe cafe = fabricaCafe.fazerCafe("cappuccino");
+        Assert.assertSame(cafe.getNome(), new FabricaCafeCappuccino().criarCafe().getNome());
+    }
+    
+    @Test
+    public void testFactoryCafeDescafeinado() throws Exception
+    {
+        fabricaCafe = new FabricaCafe();
+        Cafe cafe = fabricaCafe.fazerCafe("descafeinado");
+        Assert.assertSame(cafe.getNome(), new FabricaCafeDescafeinado().criarCafe().getNome());
     }
 
     // TODO add test methods here. The name must begin with 'test'. For example:
